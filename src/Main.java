@@ -13,6 +13,12 @@ public class Main
 
         System.out.println(list.getu(new User("Bob", 11)));
 
-        Persister.s(list);
+      try {
+        Persister.s(list.getAll());
+      } catch (java.io.IOException e) {
+        e.printStackTrace(); // eller en kort fejlbesked
+      }
+
+
     }
 }
