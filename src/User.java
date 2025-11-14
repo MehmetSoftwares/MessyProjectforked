@@ -1,48 +1,51 @@
-public class User
-{
-    public int c_id;
-    public String c_nam;
-    public String address;
+public class User {
 
-    public User(String n, int i){
-        c_nam = n;
-        if(n.length() < 0 || n.length() > 100) // Testing length
-        {
-            return; //If string is invalid, we dont try to store it
-        }
-        c_id = i;
+  private int c_id;
+  public String c_nam;
+  private String address;
+
+  public User(String n, int i) {
+    // valider input (tjekliste: Input valideres)
+    if (n == null || n.length() == 0 || n.length() > 100) {
+      throw new IllegalArgumentException("Name must be 1–100 characters");
     }
-
-    public void setC_nam(String n)
-    {
-        if(n.length() < 0)
-        {
-            return; //If string is invalid, we dont try to store it
-        }
-        c_nam = n;
-    }
-
-    public void setA(String a)
-    {
-        a = a;
-    }
-
-    public int geti(){ return c_id; }
-
-    public String getn(){ return c_nam; }
-
-    public String geta(){ return "STREETNAME"; }
-
-    @Override
-    public boolean equals(Object o){
-        if(o instanceof User u){
-            return u.c_nam == c_nam;
-        }
-        return false;
-    }
-  @Override
-  public String toString() {
-    return "User{name='" + c_nam + "', id=" + c_id + "}";
+    this.c_nam = n;
+    this.c_id = i;
   }
 
+  public void setC_nam(String n) {
+    if (n == null || n.length() == 0) {
+      return;
+    }
+    this.c_nam = n;
+  }
+
+  public void setA(String a) {
+    this.address = a;
+  }
+
+  public int geti() {
+    return c_id;
+  }
+
+  public String getn() {
+    return c_nam;
+  }
+
+  public String geta() {
+    return address;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o instanceof User u) {
+      return c_nam != null && c_nam.equals(u.c_nam);
+    }
+    return false;
+  }
+
+  @Override
+  public String toString() {
+    return "User{name='" + c_nam + "', id=" + c_id + ", address='" + address + "'}";
+  }
 }
